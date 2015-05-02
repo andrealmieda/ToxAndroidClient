@@ -4,7 +4,7 @@ import org.scaloid.common._
 import android.graphics.Color
 import android.view.Gravity._
 
-class B extends SActivity{
+class Other extends SActivity{
 
 
 	onCreate{
