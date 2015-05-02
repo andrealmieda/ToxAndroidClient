@@ -19,6 +19,7 @@ proguardOptions in Android ++= Seq("-dontobfuscate", "-dontoptimize", "-keepattr
 
 libraryDependencies += "org.scaloid" %% "scaloid" % "4.0-RC1" withSources() withJavadoc()
 libraryDependencies +=  "im.tox" %% "tox4j" % "0.0.0-SNAPSHOT"
+libraryDependencies += "org.slf4j" % "slf4j-android" % "1.7.12"
 
 scalacOptions in Compile += "-feature"
 
