@@ -29,18 +29,25 @@ class HelloScaloid extends SActivity {
 
     connection.callbackConnectionStatus(new connectionSTA)
 
-    runOnUiThread(new Runnable() {
+    new Thread() {
 
-      def run() {
+      override def run() {
 
-        while(true){
-          connection.iteration()
-          connection.iterationInterval()
+        while (true) {
+          runOnUiThread(new Runnable() {
+
+            def run(): Unit ={
+              connection.iteration()
+            }
+
+          })
+          
+          Thread.sleep(connection.iterationInterval())
         }
 
       }
 
-    })
+    }.start()
 
   }
 
