@@ -15,14 +15,8 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity
-        android:name="Other"
-        android:label="@string/app_name"
-        android:parentActivityName="HelloScaloid" >
-    </activity>
 
   </application>
   <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>
