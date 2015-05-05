@@ -14,28 +14,31 @@ import im.tox.tox4j.ToxCoreImpl
 class ToxService extends SService{
 
   def onBind(intent: Intent): IBinder = null
-  var toxService : ToxCoreImpl = null
-  implicit val tag = LoggerTag("ToxService")
-
-
-  onCreate({
-
-    toxService = new ToxCoreImpl(new ToxOptions(), null)
-    toxService.bootstrap("192.254.75.102", 33445, parsePublicKey("951C88B7E75C867418ACDB5D273821372BB5BD652740BCDF623A4FA293E75D2F"))
-    toxService.callbackConnectionStatus(new connectionStatus)
-    toxService.callbackFriendRequest(new friendRequest)
-
-
-    Future{
+  private val toxService : ToxCoreImpl = new ToxCoreImpl(new ToxOptions(), null)
+  private val neverEndindThread : Thread = new Thread(){
+    override def run(): Unit ={
       while(true) {
         toxService.iteration()
         Thread.sleep(toxService.iterationInterval())
       }
     }
+  }
+  implicit val tag = LoggerTag("ToxService")
+
+
+  onCreate({
+
+
+    toxService.bootstrap("192.254.75.102", 33445, parsePublicKey("951C88B7E75C867418ACDB5D273821372BB5BD652740BCDF623A4FA293E75D2F"))
+    toxService.callbackConnectionStatus(new connectionStatus)
+    toxService.callbackFriendRequest(new friendRequest)
+    neverEndindThread.start()
 
   })
 
   onDestroy({
+    neverEndindThread.interrupt()
+    neverEndindThread.join()
     toxService.close()
   })
 
@@ -79,8 +82,6 @@ class ToxService extends SService{
     def connectionStatus(connectionStatus : ToxConnection): Unit ={
       warn("Status Update")
       sendBroadcast(new Intent(Constants.CONNECTION_STATUS).putExtra("status",s"$connectionStatus"))
-      info(readablePublicKey(toxService.getPublicKey))
-      info(toxService.getAddress.mkString)
     }
 
   }
