@@ -8,8 +8,8 @@ import android.view.Gravity.CENTER
 
 class HelloScaloid extends SActivity {
 
-  private var text : STextView = null;
-  var receiver : BroadcastReceiver = _
+  private var text: STextView = null
+  var receiver: BroadcastReceiver = _
 
   onCreate {
     setTitle("First App in Scaloid")
@@ -35,7 +35,6 @@ class HelloScaloid extends SActivity {
 }
 
 
-
 class UIBroadcasterReceiver extends BroadcastReceiver {
 
   implicit val tag = LoggerTag("ToxUI")
@@ -44,11 +43,9 @@ class UIBroadcasterReceiver extends BroadcastReceiver {
     val service = context.asInstanceOf[HelloScaloid]
     warn("Received")
     service.updateLabel("Connected via " + intent.getStringExtra("status"))
-
   }
 
 }
-
 
 
 object Constants {

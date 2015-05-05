@@ -15,7 +15,7 @@ class ToxService extends SService {
 
   def onBind(intent: Intent): IBinder = null
   private val toxService  = new ToxCoreImpl(new ToxOptions, null)
-  private val neverEndingThread = new Thread{
+  private val neverEndingThread = new Thread {
     override def run {
       while (true) {
         toxService.iteration()
@@ -50,7 +50,6 @@ class ToxService extends SService {
         ).toByte
     }
     publicKey
-
   }
 
   private def fromHexDigit(c: Char): Byte = {
@@ -73,7 +72,7 @@ class ToxService extends SService {
     str.toString()
   }
 
-  private sealed class connectionStatus extends ConnectionStatusCallback{
+  private sealed class connectionStatus extends ConnectionStatusCallback {
 
     def connectionStatus(connectionStatus: ToxConnection): Unit ={
       warn("Status Update")
@@ -82,7 +81,7 @@ class ToxService extends SService {
 
   }
 
-  private sealed class friendRequest extends FriendRequestCallback{
+  private sealed class friendRequest extends FriendRequestCallback {
 
     def friendRequest(publicKey: Array[Byte], timeDelta: Int, message: Array[Byte]): Unit = {
       info("New Friend Request " + readablePublicKey(publicKey) + " -> "+message)
