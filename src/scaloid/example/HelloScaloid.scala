@@ -9,7 +9,7 @@ import android.view.Gravity.CENTER
 class HelloScaloid extends SActivity {
 
   private var text: STextView = null
-  var receiver: BroadcastReceiver = _
+  private var receiver: BroadcastReceiver = _
 
   onCreate {
     setTitle("First App in Scaloid")
