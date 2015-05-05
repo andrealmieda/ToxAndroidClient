@@ -21,31 +21,35 @@ class HelloScaloid extends SActivity {
     receiver = new UIBroadcasterReceiver
     registerReceiver(receiver, Constants.CONNECTION_STATUS)
     startService(SIntent[ToxService])
-
-
   }
 
-  onDestroy{
+  onDestroy {
     stopService(SIntent[ToxService])
     unregisterReceiver(receiver)
   }
 
-  def updateLabel(newStatus: String): Unit ={
+  def updateLabel(newStatus: String) {
     text.text(newStatus)
   }
 
 }
 
-class UIBroadcasterReceiver extends BroadcastReceiver{
+
+
+class UIBroadcasterReceiver extends BroadcastReceiver {
+
   implicit val tag = LoggerTag("ToxUI")
 
-  def onReceive(context: Context, intent: Intent): Unit = {
+  def onReceive(context: Context, intent: Intent) {
     val service = context.asInstanceOf[HelloScaloid]
     warn("Received")
     service.updateLabel("Connected via " + intent.getStringExtra("status"))
 
   }
+
 }
+
+
 
 object Constants {
   val CONNECTION_STATUS = "0"

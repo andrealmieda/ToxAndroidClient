@@ -16,7 +16,7 @@ class ToxService extends SService {
   def onBind(intent: Intent): IBinder = null
   private val toxService  = new ToxCoreImpl(new ToxOptions, null)
   private val neverEndingThread = new Thread{
-    override def run: Unit ={
+    override def run {
       while (true) {
         toxService.iteration()
         Thread.sleep(toxService.iterationInterval())
@@ -26,14 +26,14 @@ class ToxService extends SService {
   implicit val tag = LoggerTag("ToxService")
 
 
-  onCreate{
+  onCreate {
     toxService.bootstrap("192.254.75.102", 33445, parsePublicKey("951C88B7E75C867418ACDB5D273821372BB5BD652740BCDF623A4FA293E75D2F"))
     toxService.callbackConnectionStatus(new connectionStatus)
     toxService.callbackFriendRequest(new friendRequest)
     neverEndingThread.start()
   }
 
-  onDestroy{
+  onDestroy {
     neverEndingThread.interrupt()
     neverEndingThread.join()
     toxService.close()
