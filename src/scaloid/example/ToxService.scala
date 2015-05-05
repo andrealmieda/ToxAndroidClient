@@ -11,13 +11,13 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import im.tox.tox4j.ToxCoreImpl
 
 
-class ToxService extends SService{
+class ToxService extends SService {
 
   def onBind(intent: Intent): IBinder = null
-  private val toxService : ToxCoreImpl = new ToxCoreImpl(new ToxOptions(), null)
-  private val neverEndindThread : Thread = new Thread(){
-    override def run(): Unit ={
-      while(true) {
+  private val toxService  = new ToxCoreImpl(new ToxOptions, null)
+  private val neverEndingThread = new Thread{
+    override def run: Unit ={
+      while (true) {
         toxService.iteration()
         Thread.sleep(toxService.iterationInterval())
       }
@@ -26,21 +26,18 @@ class ToxService extends SService{
   implicit val tag = LoggerTag("ToxService")
 
 
-  onCreate({
-
-
+  onCreate{
     toxService.bootstrap("192.254.75.102", 33445, parsePublicKey("951C88B7E75C867418ACDB5D273821372BB5BD652740BCDF623A4FA293E75D2F"))
     toxService.callbackConnectionStatus(new connectionStatus)
     toxService.callbackFriendRequest(new friendRequest)
-    neverEndindThread.start()
+    neverEndingThread.start()
+  }
 
-  })
-
-  onDestroy({
-    neverEndindThread.interrupt()
-    neverEndindThread.join()
+  onDestroy{
+    neverEndingThread.interrupt()
+    neverEndingThread.join()
     toxService.close()
-  })
+  }
 
 
   private def parsePublicKey(id: String): Array[Byte] = {
@@ -53,7 +50,6 @@ class ToxService extends SService{
         ).toByte
     }
     publicKey
-
 
   }
 
@@ -70,18 +66,18 @@ class ToxService extends SService{
   }
 
   private def readablePublicKey(id: Array[Byte]): String = {
-    val str: StringBuilder = new StringBuilder
+    val str = new StringBuilder
     for (b <- id) {
       str.append(f"$b%02X")
     }
     str.toString()
-    }
+  }
 
   private sealed class connectionStatus extends ConnectionStatusCallback{
 
-    def connectionStatus(connectionStatus : ToxConnection): Unit ={
+    def connectionStatus(connectionStatus: ToxConnection): Unit ={
       warn("Status Update")
-      sendBroadcast(new Intent(Constants.CONNECTION_STATUS).putExtra("status",s"$connectionStatus"))
+      sendBroadcast(new Intent(Constants.CONNECTION_STATUS).putExtra("status", s"$connectionStatus"))
     }
 
   }
@@ -89,7 +85,7 @@ class ToxService extends SService{
   private sealed class friendRequest extends FriendRequestCallback{
 
     def friendRequest(publicKey: Array[Byte], timeDelta: Int, message: Array[Byte]): Unit = {
-      info("New Friend Request "+readablePublicKey(publicKey)+" -> "+message)
+      info("New Friend Request " + readablePublicKey(publicKey) + " -> "+message)
     }
 
   }

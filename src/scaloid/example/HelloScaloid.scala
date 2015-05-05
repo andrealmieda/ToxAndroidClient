@@ -19,18 +19,18 @@ class HelloScaloid extends SActivity {
     } padding 20.dip
 
     receiver = new UIBroadcasterReceiver
-    registerReceiver(receiver,Constants.CONNECTION_STATUS)
+    registerReceiver(receiver, Constants.CONNECTION_STATUS)
     startService(SIntent[ToxService])
 
 
   }
 
-  onDestroy({
+  onDestroy{
     stopService(SIntent[ToxService])
     unregisterReceiver(receiver)
-  })
+  }
 
-  def updateLabel(newStatus :String): Unit ={
+  def updateLabel(newStatus: String): Unit ={
     text.text(newStatus)
   }
 
@@ -42,11 +42,11 @@ class UIBroadcasterReceiver extends BroadcastReceiver{
   def onReceive(context: Context, intent: Intent): Unit = {
     val service = context.asInstanceOf[HelloScaloid]
     warn("Received")
-    service.updateLabel("Connected via "+intent.getStringExtra("status"))
+    service.updateLabel("Connected via " + intent.getStringExtra("status"))
 
   }
 }
 
-object Constants{
+object Constants {
   val CONNECTION_STATUS = "0"
 }
