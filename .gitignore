@@ -1,8 +1,6 @@
-libs/
-bin/
-gen/
-target/
-.idea*/
-build.xml
-local.properties
-proguard-*.txt
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
