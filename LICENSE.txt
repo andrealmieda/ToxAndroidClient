@@ -1,1 +1,0 @@
-Hello-scaloid-sbt is a public domain software; Nobody owns its copyright.

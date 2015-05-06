@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<color name="backgroundColor">#fafafa</color>
+<style name="MainView" parent="android:Theme.Material">
+    <!-- Main theme colors -->
+    <item name="android:windowBackground">@color/backgroundColor</item>
+    <item name="android:colorPrimary">#4A90E2</item>
+    <item name="android:colorPrimaryDark">#2A5281</item>
+    <item name="android:textColorPrimary">#ffffff</item>
+    <item name="android:navigationBarColor">#7D7D7D</item>
+    <item name="android:colorAccent">#9F9F9F</item>
+</style>
+<style name="SecondView" parent="android:Theme.Material.NoActionBar">
+    <!-- Main theme colors -->
+    <item name="android:windowTranslucentStatus">true</item>
+    <item name="android:windowBackground">@color/backgroundColor</item>
+    <item name="android:colorPrimary">#D0021B</item>
+    <item name="android:colorPrimaryDark">#77010F</item>
+    <item name="android:textColorPrimary">#ffffff</item>
+    <item name="android:navigationBarColor">#7D7D7D</item>
+    <item name="android:colorAccent">#9F9F9F</item>
+</style>
+</resources>
+
