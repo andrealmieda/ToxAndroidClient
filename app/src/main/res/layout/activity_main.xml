@@ -1,58 +1,68 @@
-<RelativeLayout android:id="@+id/RelativeLayout01"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
 
+<android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:fab="http://schemas.android.com/tools">
 
-    <android.support.v4.widget.DrawerLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/Drawer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <!-- The main content view -->
-        <FrameLayout
-                android:id="@+id/content_frame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        <!-- The navigation drawer -->
-        <ListView android:id="@+id/left_drawer"
-                  android:layout_width="240dp"
-                  android:layout_height="match_parent"
-                  android:layout_gravity="start"
-                  android:choiceMode="singleChoice"
-                  android:divider="@android:color/transparent"
-                  android:dividerHeight="0dp"
-                  android:background="#111"/>
-    </android.support.v4.widget.DrawerLayout>
+    <!-- Main layout -->
 
     <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="10dp" android:layout_marginEnd="200dp" android:layout_marginTop="10dp">
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+           android:id="@+id/toolbar"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:height="?android:attr/actionBarSize"
+           app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+           app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+           android:background="@color/mainPrimaryColor" />
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                     xmlns:fab="http://schemas.android.com/apk/res-auto"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent">
 
 
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mainRecyclerView"
+                    android:scrollbars="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="First View"
-                android:id="@+id/textView" android:layout_gravity="center_horizontal"/>
-        <EditText
-                android:layout_width="194dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/editText" android:layout_gravity="center_horizontal"/>
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New View"
-                android:id="@+id/button" android:layout_gravity="center_horizontal"
-                android:onClick="nextActivity"
-                />
+            <com.melnykov.fab.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/ic_content_add"
+                    fab:fab_colorNormal="@color/primaryButton"
+                    fab:fab_colorPressed="@color/primary_pressedButton"
+                    fab:fab_type="normal"
+                    fab:fab_colorRipple="@color/rippleButton" />
+
+        </FrameLayout>
+
     </LinearLayout>
+    <!-- Nav drawer -->
+    <ListView
+        android:id="@+id/left_drawer"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp"
+        android:background="@color/mainPrimaryDarkColor"/>
+
+</android.support.v4.widget.DrawerLayout>
 
 
 
-</RelativeLayout>
