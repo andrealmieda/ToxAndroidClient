@@ -17,7 +17,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.materialApp.nativeandroid.app"
+        applicationId "com.materialApp.application.app"
         minSdkVersion 11
         targetSdkVersion 22
         versionCode 1

@@ -9,4 +9,5 @@
     <item name="primaryButton" type="color">#ffffff</item>
     <item name="primary_pressedButton" type="color">#ffffff</item>
     <item name="rippleButton" type="color">#ffffff</item>
+    <item name="recyclerSelected" type="color">#d35400</item>
 </resources>

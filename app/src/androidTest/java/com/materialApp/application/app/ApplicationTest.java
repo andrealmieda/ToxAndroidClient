@@ -1,4 +1,4 @@
-package com.materialApp.nativeandroid.app;
+package com.materialApp.application.app;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

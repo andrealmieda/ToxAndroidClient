@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.materialApp.nativeandroid.app" >
+    package="com.materialApp.application.app" >
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SecondActivity"
+            android:label="@string/title_activity_second"
+            android:parentActivityName=".Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.materialApp.application.app.Main" />
         </activity>
     </application>
 

@@ -6,35 +6,31 @@
         android:layout_height="match_parent"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:fab="http://schemas.android.com/tools">
-
-    <!-- Main layout -->
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        >
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" >
 
         <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
            android:id="@+id/toolbar"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:height="?android:attr/actionBarSize"
-           app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+           app:theme="@style/ThemeOverlay.AppCompat.Dark"
            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
            android:background="@color/mainPrimaryColor" />
 
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                     xmlns:fab="http://schemas.android.com/apk/res-auto"
                      android:layout_width="match_parent"
                      android:layout_height="match_parent">
 
-
             <android.support.v7.widget.RecyclerView
-                    android:id="@+id/mainRecyclerView"
-                    android:scrollbars="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                android:id="@+id/mainRecyclerView"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
             <com.melnykov.fab.FloatingActionButton
                     android:id="@+id/fab"
@@ -51,18 +47,14 @@
         </FrameLayout>
 
     </LinearLayout>
-    <!-- Nav drawer -->
     <ListView
-        android:id="@+id/left_drawer"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:background="@color/mainPrimaryDarkColor"/>
+            android:id="@+id/left_drawer"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:background="@color/mainPrimaryDarkColor"/>
 
 </android.support.v4.widget.DrawerLayout>
-
-
-
